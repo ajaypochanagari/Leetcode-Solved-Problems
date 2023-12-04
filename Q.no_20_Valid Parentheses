@@ -1,0 +1,45 @@
+class Solution {
+    public boolean isValid(String s) {
+    
+
+    char[] arr=new char[s.length()];
+        int k=0;
+        if(s.length()%2!=0){
+            return false;
+        }
+        else{
+            for(char c:s.toCharArray()){
+                if(c=='(' || c=='{' || c=='['){
+                    arr[k++]=c;
+                }
+
+                else if((k>0 && c==')' && arr[k-1]=='(') || (k>0 && c==']' && arr[k-1]=='[')|| (k>0 && c=='}' && arr[k-1]=='{') ){
+                    k--;
+                }
+                else{
+                   
+                    return false;
+                
+                }
+            }
+             if (k == 0) {
+                
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+   } 
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+ 
