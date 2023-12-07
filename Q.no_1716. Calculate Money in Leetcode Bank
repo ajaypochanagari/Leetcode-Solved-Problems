@@ -1,0 +1,25 @@
+class Solution {
+    public int totalMoney(int n) {
+      int ans=0;
+        if(n<=7){
+            return n*(n+1)/2;
+        }
+        else{
+            int quotient=n/7;
+            int rem=n%7;
+            int sum=28;
+            for(int i=0;i<quotient;i++){
+                ans+=sum;
+                sum+=7;
+            }
+            int run=quotient+1;
+            for(int i=0;i<rem;i++){
+                ans+=run;
+                run++;
+            }
+
+        }
+
+        return ans;
+    }
+}
