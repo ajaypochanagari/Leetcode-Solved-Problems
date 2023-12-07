@@ -1,0 +1,19 @@
+class Solution {
+    public String largestGoodInteger(String s) {
+        int ans=-1;
+        int max1=Integer.MIN_VALUE;
+        for(int i=0;i+2<s.length();i++){
+            //String res=s.substring(i,i+3);
+            if(s.charAt(i)==s.charAt(i+1) && s.charAt(i+1)==s.charAt(i+2)){
+                ans=s.charAt(i)-'0';
+            }
+            max1=(int)Math.max(ans,max1);
+
+        }
+        if(max1>=0)
+        return ""+max1+""+max1+""+max1;
+        else
+            return "";
+        
+    }
+}
