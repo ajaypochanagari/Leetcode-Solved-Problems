@@ -1,0 +1,30 @@
+//BEATS 100% 
+
+class Solution {
+    public void rotate(int[][] matrix) {
+       int n=matrix.length;
+        //for(int i=0;i<n;i++){
+        int i=0;
+        while(i<n){
+            for(int j=i;j<n;j++){
+                int t=matrix[i][j];
+                matrix[i][j]=matrix[j][i];
+                matrix[j][i]=t;
+            }
+            i++;
+
+        }
+       int f=0;
+        int l=n-1;
+        while(f<l){
+            for(int k=0;k<n;k++){
+                int t=matrix[k][f];
+                matrix[k][f]=matrix[k][l];
+                matrix[k][l]=t;
+            }
+            f++;
+            l--;
+        }
+        
+    }
+}
