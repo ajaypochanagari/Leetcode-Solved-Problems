@@ -1,0 +1,47 @@
+//The idea is Simple while traversing in level order[BFS] at each level where i points to last node will be added to List that's it
+
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> res=new ArrayList<>();
+        if(root==null){
+            return res;
+        }
+        Queue<TreeNode> q1=new LinkedList<>();
+        q1.offer(root);
+        while(!q1.isEmpty()){
+            int size=q1.size();
+            for(int i=0;i<size;i++){
+                TreeNode n=q1.poll();
+                if(i==size-1){
+                    res.add(n.val);
+                }
+
+                if(n.left!=null){
+                    q1.offer(n.left);
+                }
+                if(n.right!=null){
+                    q1.offer(n.right);
+                }
+            }
+        }
+        return res;
+        
+    }
+}
