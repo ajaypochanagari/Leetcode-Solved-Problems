@@ -1,0 +1,25 @@
+class Solution {
+    Queue<Integer> q=new LinkedList<>();
+    public int kthSmallest(TreeNode root, int k) {
+        int size=0;
+        traversal(root);
+        while(!q.isEmpty()){
+            size++;
+            int t=q.poll();
+            if(size==k){
+                return t;
+            }
+        }
+        return 0;
+        
+    }
+    public void traversal(TreeNode root){
+        if(root==null){
+            return;
+        }
+        traversal(root.left);
+        q.offer(root.val);
+        traversal(root.right);
+
+    }
+}
