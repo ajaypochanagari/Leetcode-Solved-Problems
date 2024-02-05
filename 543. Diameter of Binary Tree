@@ -1,0 +1,20 @@
+class Solution {
+    int dia=0;
+    public int diameterOfBinaryTree(TreeNode root) {
+       int ans= traverse(root);
+       return dia;
+
+        
+    }
+    public int traverse(TreeNode root){
+        if(root==null){
+            return 0;
+        }
+        int l=traverse(root.left);
+        int r=traverse(root.right);
+            int diff=l+r;
+            dia=Math.max(dia,diff);
+        return 1+Math.max(l,r);
+    }
+
+}
