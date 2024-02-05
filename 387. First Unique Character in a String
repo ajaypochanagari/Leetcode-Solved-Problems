@@ -1,0 +1,46 @@
+class Solution {
+    public int firstUniqChar(String s) {
+
+       /* //BRUTE FORCE APPROACH
+          Set<Character> set=new HashSet<Character>();
+        for(int i=0;i<s.length();){
+            if(set.contains(s.charAt(i))){
+                i++;
+                continue;
+            }
+            int count=0;
+            int index=i;
+            set.add(s.charAt(i));
+            for(int j=i+1;j<s.length();j++){
+                if(s.charAt(i)==s.charAt(j)){
+                    ++count;
+                    break;
+                }
+            }
+            if(count==0){
+                return index;
+            }
+            i++;
+
+        }
+        return -1;
+        */
+
+
+        //Better solution
+
+       int[] arr=new int[26];
+        for(int i=0;i<s.length();i++){
+            arr[s.charAt(i)-'a']++;
+        }
+        for(int index=0;index<s.length();index++){
+            int n=s.charAt(index)-'a';
+            if(arr[n]==1){
+                return index;
+            }
+
+        }
+        return -1;
+    
+    }
+}
