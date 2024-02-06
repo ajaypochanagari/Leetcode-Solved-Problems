@@ -1,0 +1,20 @@
+class Solution {
+    int ans=0;
+    public int sumNumbers(TreeNode root) {
+        helper(root,0);
+        return ans;
+        
+    }
+    public void helper(TreeNode root,int c_sum){
+        if(root==null){
+            return ;
+        }
+        if(root.left==null && root.right==null){
+            ans+=c_sum*10+root.val;
+            return;
+        }
+        helper(root.left,c_sum*10+root.val);
+        helper(root.right,c_sum*10+root.val);
+
+    }
+}
