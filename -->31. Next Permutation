@@ -1,0 +1,47 @@
+
+class Solution {
+    public void nextPermutation(int[] nums) {
+
+        //need to find the break point
+
+        int index=-1;
+        for(int i=nums.length-2;i>=0;i--){
+            if(nums[i]<nums[i+1]){
+                index=i;
+                break;
+            }
+        }
+        if(index==-1){
+            reverse(nums,0,nums.length-1);
+        }
+        else{
+        int nextgreaterindex=0;
+        for(int i=nums.length-1;i>=0;i--){
+            if(nums[i]>nums[index]){
+                nextgreaterindex=i;
+                break;
+            }
+        }
+        swap(nums,index,nextgreaterindex);
+
+        reverse(nums,index+1,nums.length-1);
+        }
+        
+        
+    }
+    public void swap(int[] nums,int i,int j){
+        int t=nums[i];
+        nums[i]=nums[j];
+        nums[j]=t;
+    }
+    public void reverse(int[] nums,int i,int j){
+        while(i<j){
+             int t=nums[i];
+        nums[i]=nums[j];
+        nums[j]=t;
+        i++;
+        j--;
+
+        }
+    }
+}
