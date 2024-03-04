@@ -1,0 +1,33 @@
+class Solution {
+    public int bagOfTokensScore(int[] tokens, int power) {
+        int s=0;
+        int k=tokens.length-1;
+        if(tokens.length==1 && tokens[0]<=power){
+            return 1;
+        }
+         if(tokens.length==1 && tokens[0]>power){
+            return 0;
+        }
+
+        Arrays.sort(tokens);
+        for(int i=0;i<tokens.length && i<=k;){
+            if(tokens[i]<=power){
+                power-=tokens[i];
+                ++s;
+                ++i;
+                continue;
+            }
+            else {
+                if (s > 0 && (i != tokens.length - 1) && i!=k) {
+                    power += tokens[k--];
+                    // ++i;
+                    --s;
+                }
+                else{
+                    i++;
+                }
+            }
+        }
+        return s;
+    }
+}
