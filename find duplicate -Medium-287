@@ -1,0 +1,77 @@
+// This problem can be solved in many ways but try to slove in constant space and linear time complexity 
+// i done this using 4 to 5 approaches hope it is helpful to you 
+
+class Solution {
+    public int findDuplicate(int[] nums) {
+
+        // Using slow and fast pointer technique  Efficient 
+          int slow=nums[0];
+          int fast=nums[0];
+          while(true){
+            slow=nums[slow];
+            fast=nums[nums[fast]];
+            if(slow==fast){
+                break;
+            }
+          }
+          fast=nums[0];
+          while(fast!=slow){
+            slow=nums[slow];
+            fast=nums[fast];
+          }
+          return slow;
+
+      /*
+      2nd Method
+        space complexity:-O(n) 
+         HashSet<Integer> set=new HashSet<>();
+        for(int ele:nums){
+            if(set.contains(ele)){
+                return ele;
+            }
+            else{
+                set.add(ele);
+            }
+        }
+        return -1;
+        */
+
+    /* 3nd apporach with T.C:-O(logn * n);
+        Arrays.sort(nums);
+        for(int i=1;i<nums.length;i++){
+            if(nums[i]==nums[i-1]){
+                return nums[i];
+            }
+        }
+        return -1;
+
+        */   // 4th approach
+        // int i=0;
+        // while(i<nums.length){
+        //     if(nums[i]>nums.length){
+        //         i++;
+        //     }
+        //     else{
+        //         int c=nums[i]-1;
+        //         if(nums[i]!=nums[c]){
+        //             swap(nums,i,c);
+        //         }
+        //         else{
+        //             i++;
+        //         }
+        //     }
+        // }
+        // for(int index=0;index<nums.length;index++){
+        //     if(nums[index]!=index+1){
+        //         return nums[index];
+        //     }
+        // }
+        // return -1;
+        
+    }
+    public void swap(int[] nums,int i,int j){
+        int t=nums[i];
+        nums[i]=nums[j];
+        nums[j]=t;
+    }
+} 
