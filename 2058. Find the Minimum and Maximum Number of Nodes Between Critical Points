@@ -1,0 +1,36 @@
+//This is my approach done in linear time complexity.
+class Solution {
+    public int[] nodesBetweenCriticalPoints(ListNode head) {
+        if(head.next==null){
+            return new int[]{-1,-1};
+        }
+        
+        ListNode prev=head;
+        ListNode temp=head.next;
+        int count=2;
+        List<Integer> l=new ArrayList<>();
+        while(temp.next!=null){
+            ListNode fut=temp.next;
+            if(temp.val>prev.val && temp.val>fut.val){
+                l.add(count);  
+            }
+            if(temp.val<prev.val && temp.val<fut.val){
+                l.add(count);  
+            }
+            prev=temp;
+            temp=temp.next;
+            ++count;
+        }
+        if(l.size()<2){
+            return new int[]{-1,-1};
+        }
+        int max=l.get(l.size()-1)-l.get(0);
+        int min=99999;
+        for(int i=0;i<l.size()-1;i++){
+            int e1=l.get(i);
+            int e2=l.get(i+1);
+            min=Math.min(min,e2-e1);
+        }
+        return new int[]{min,max};
+    }
+}
