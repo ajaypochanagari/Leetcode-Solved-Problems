@@ -1,0 +1,34 @@
+class Solution {
+    public int numWaterBottles(int numBottles, int numExchange) {
+
+        /*
+        Here come idea to slove the problem 
+        intially there are n bottles with filled with liquid
+        if you start drinking bottles for numExchange empty bootles you get one full liquid bottle as 
+        you need to exchange empty bootles with full bottles as possible as
+
+        t=15                                              t=9
+        count=15                                           count=9
+    ex:2  15>4:          6>4:        3>4:          ex:1  9>3:          3>=3:   1>0:
+          15+3          18+1        Fails                 9+3           12+1    Fails
+          e->3          e->1                               e->3         e->1
+          e+->3         e+->3                               e->3+0     e->1+0
+          t->e->6       t->e->3                               t->3       t->1   
+        */
+
+
+
+        int t=numBottles;
+        int count=t;
+        while(t>=numExchange){
+            count+=t/numExchange;
+            int e=t/numExchange;
+               e+=t%numExchange;
+               t=e;
+
+
+        }
+        return count;
+        
+    }
+}
