@@ -1,0 +1,50 @@
+class Solution {
+    public double averageWaitingTime(int[][] customers) {
+
+        /*
+        [1,2]->arrives at 1
+             ->chef start at 1 +end time->3   2,2,4
+
+        [2,5]-> 3 +end time  -->8
+
+        [4,3]->8+end time--->11 
+
+        total=>11-1-2-4
+
+
+            ex:-2  [5,2]--> 5+2=>7    7-5-->2
+                    [5,4]-->7+4=>11   11-5->6
+                    [10,3]-->11+3=>14  14-10->4
+                    [20,1]-->=1=>15 
+                         prepare          wait
+            test case->     5       -2-->   3
+
+        */
+        int prepare=0;
+        double avg=0;
+        for(int i=0;i<customers.length;i++){
+             int arrive=customers[i][0];
+             int end=customers[i][1];
+            if(i==0){
+                prepare=arrive+end;
+                avg=prepare-arrive;
+                continue;
+            }
+            else{
+                if(prepare>arrive){
+                    prepare+=end;
+                    avg+=prepare-arrive;
+                }
+                else{
+                    prepare=arrive+end;
+                    int t=arrive+end;
+                    avg+=Math.abs(arrive-t);
+                }
+            }
+
+
+        }
+        return avg/customers.length;
+        
+    }
+}
